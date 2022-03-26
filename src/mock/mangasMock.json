@@ -1,0 +1,149 @@
+[
+    {
+        "title": "One Piece",
+        "number": 1,
+        "pasillo": "A",
+        "nivel": 1,
+        "seccion": "A"
+    },
+    {
+        "title": "Aoha Ride",
+        "number": 2,
+        "pasillo": "B",
+        "nivel": 3,
+        "seccion": "C"
+    },
+    {
+        "title": "Oyasumi Punpun",
+        "number": 12,
+        "pasillo": "A",
+        "nivel": 2,
+        "seccion": "A"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 6,
+        "pasillo": "C",
+        "nivel": 1,
+        "seccion": "B"
+    },
+    {
+        "title": "Made in Abyss",
+        "number": 3,
+        "pasillo": "B",
+        "nivel": 3,
+        "seccion": "A"
+    },
+    {
+        "title": "One Piece",
+        "number": 60,
+        "pasillo": "C",
+        "nivel": 4,
+        "seccion": "G"
+    },
+    {
+        "title": "One Piece",
+        "number": 5,
+        "pasillo": "A",
+        "nivel": 4,
+        "seccion": "B"
+    },
+    {
+        "title": "Made in Abyss",
+        "number": 9,
+        "pasillo": "C",
+        "nivel": 2,
+        "seccion": "A"
+    },
+    {
+        "title": "Bestiarius",
+        "number": 3,
+        "pasillo": "B",
+        "nivel": 3,
+        "seccion": "F"
+    },
+    {
+        "title": "Oyasumi Punpun",
+        "number": 2,
+        "pasillo": "F",
+        "nivel": 4,
+        "seccion": "A"
+    }
+]
