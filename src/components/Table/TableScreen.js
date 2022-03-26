@@ -55,9 +55,9 @@ export const TableScreen = () => {
 	};
 
 	useEffect(() => {
-		getMangas().then((manga) => {
+		getMangas().then(([data]) => {
 			setIsLoading(false);
-			setMangas(manga[0].manga);
+			setMangas(data.manga);
 		});
 	}, []); // eslint-disable-line
 
