@@ -5,11 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { MangaContext } from "./context/MangaContext";
 
 function App() {
-	window.onunload = () => {
-		localStorage.removeItem("token");
-		localStorage.removeItem("user");
-	};
-
 	return (
 		<MangaContext>
 			<BrowserRouter>

@@ -6,6 +6,9 @@ import useMobileScreen from "../../hook/useMobileScreen";
 import { useContext, useState } from "react";
 import { context } from "../../context/MangaContext";
 
+import { sessionValidation } from "../../helper/login";
+import { alertToast } from "../Alerts/Alerts";
+
 export const Nav = () => {
 	const navigate = useNavigate();
 
@@ -19,8 +22,16 @@ export const Nav = () => {
 	const handleLogout = () => {
 		setIsLogged(false);
 		localStorage.removeItem("token");
-		localStorage.removeItem("user");
 		navigate("/");
+		alertToast("success", "Sesion Cerrada!")
+	};
+
+	const handleSession = () => {
+		sessionValidation().catch(({ response }) => {
+			setIsLogged(false);
+			localStorage.removeItem("token");
+			alertToast("error", response.data.message);
+		});
 	};
 
 	const isMobile = useMobileScreen();
@@ -41,7 +52,9 @@ export const Nav = () => {
 					<div className="nav__container">
 						{isLogged && (
 							<div className="logged">
-								<Link to="/manga">Agregar Manga</Link>
+								<Link to="/manga" onClick={handleSession}>
+									Agregar Manga
+								</Link>
 							</div>
 						)}
 
@@ -59,7 +72,11 @@ export const Nav = () => {
 			) : (
 				<div className="container__login">
 					{isLogged && (
-						<Link to="/manga" className="container__button">
+						<Link
+							to="/manga"
+							className="container__button"
+							onClick={handleSession}
+						>
 							Agregar Manga
 						</Link>
 					)}

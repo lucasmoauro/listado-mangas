@@ -1,7 +1,6 @@
 import { useContext } from "react";
-
 import { context } from "../../context/MangaContext";
-import { deleteManga } from "../../db/firebaseDB";
+import { deleteManga } from "../../mongoDB/mongo";
 import { alertToast } from "../Alerts/Alerts";
 
 export const Modal = () => {
@@ -13,15 +12,15 @@ export const Modal = () => {
 	};
 
 	const handleDelete = () => {
-		deleteManga(mangaToDelete.titulo);
-		setMangas(mangas.filter((m) => m.titulo !== mangaToDelete.titulo));
+		deleteManga(mangaToDelete.id);
+		setMangas(mangas.filter((m) => m.id !== mangaToDelete.id));
 		setIsModalOpen(false);
 		alertToast("success", "Manga eliminado correctamente");
 	};
 
 	return (
 		<div className="modal">
-			<div className="modal__container">
+			<div className="modal__container" onClick={handleClose}>
 				<div>
 					<h1>Queres borrar {mangaToDelete.titulo}?</h1>
 					<div className="modal__buttons">

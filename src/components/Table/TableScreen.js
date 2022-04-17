@@ -4,13 +4,15 @@ import { InfinitySpin } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 
 import { context } from "../../context/MangaContext";
-import { getMangas, updateStock } from "../../db/firebaseDB";
 
 import { Nav } from "../Nav/Nav";
 import { Search } from "../Search/Search";
 import { Modal } from "../Modal/Modal";
 
 import trashBin from "../../images/delete.png";
+import { getMangas, updateStock } from "../../mongoDB/mongo";
+import { sessionValidation } from "../../helper/login";
+import { alertToast } from "../Alerts/Alerts";
 
 export const TableScreen = () => {
 	const {
@@ -20,6 +22,7 @@ export const TableScreen = () => {
 		setMangaToDelete,
 		mangas,
 		setMangas,
+		setIsLogged,
 	} = useContext(context);
 
 	const navigate = useNavigate();
@@ -34,30 +37,53 @@ export const TableScreen = () => {
 	};
 
 	const handleModal = (manga) => {
-		setMangaToDelete(manga);
-		setIsModalOpen(true);
+		sessionValidation().catch(({ response }) => {
+			setIsLogged(false);
+			localStorage.removeItem("token");
+			navigate("/login");
+			alertToast("error", response.data.message);
+		});
+		if (isLogged && localStorage.getItem("token") !== null) {
+			setMangaToDelete(manga);
+			setIsModalOpen(true);
+		}
 	};
 
+	//Fn que cambia el boolean del stock (checkbox) permitiendo que la celda cambie a rojo si esta agotado
 	const handleStock = (manga) => {
-		manga.stock = !manga.stock;
-		mangas.splice(mangas.indexOf(manga), 1, manga);
+		sessionValidation().catch(({ response }) => {
+			setIsLogged(false);
+			localStorage.removeItem("token");
+			navigate("/login");
+			alertToast("error", response.data.message);
+		});
 
-		updateStock(manga.titulo, manga);
-		setMangas([...mangas]);
+		if (isLogged && localStorage.getItem("token") !== null) {
+			manga.stock = !manga.stock;
+			mangas.splice(mangas.indexOf(manga), 1, manga);
+
+			updateStock(manga.id, manga.stock);
+			setMangas([...mangas]);
+		}
 	};
 
-	const handleNavigate = (manga) => {
-		if (isLogged) {
-			navigate(`/manga/${manga.titulo}`);
-		} else {
-			return;
+	const handleNavigate = async ({ id }) => {
+		await sessionValidation().catch(({ response }) => {
+			setIsLogged(false);
+			localStorage.removeItem("token");
+			navigate("/login");
+			alertToast("error", response.data.message);
+		});
+
+		if (isLogged && localStorage.getItem("token") !== null) {
+			navigate(`/manga/${id}`);
 		}
 	};
 
 	useEffect(() => {
-		getMangas().then(([data]) => {
+		getMangas().then((manga) => {
 			setIsLoading(false);
-			setMangas(data.manga);
+			setMangas(manga);
 		});
 	}, []); // eslint-disable-line
 

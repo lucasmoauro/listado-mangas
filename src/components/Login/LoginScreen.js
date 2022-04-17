@@ -10,8 +10,8 @@ export const LoginScreen = () => {
 	const { setIsLogged } = useContext(context);
 
 	const [formValues, setFormValues] = useState({
-		usuario: "test@test.com",
-		password: "testapp",
+		usuario: "test",
+		password: "testeo",
 	});
 
 	const handleSubmit = async (e) => {

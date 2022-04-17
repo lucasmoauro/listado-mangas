@@ -1,15 +1,31 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/firebase";
+import axios from "axios";
 
-export const signIn = async (email, password) => {
-	await signInWithEmailAndPassword(auth, email, password)
-		.then(({ user }) => {
-			return user.accessToken;
-		})
-		.then((token) => {
-			localStorage.setItem("token", token);
-			localStorage.setItem("user", "admin");
-		})
+// = = = FN que hace log in mediante MONGODB = = =
+export const signIn = async (username, password) => {
+	const baseUrl = process.env.REACT_APP_APIDEV_LOGIN;
 
-		.catch((error) => error);
+	await axios
+		.post(`${baseUrl}/login`, {
+			username,
+			password,
+		})
+		.then(({ data }) => {
+			localStorage.setItem("token", data.token);
+		})
+		.catch(({ response }) => console.log(response));
+};
+
+//FN que valida la sesion de mongo y renueva el token del usuario
+export const sessionValidation = () => {
+	const token = localStorage.getItem("token");
+
+	const baseUrl = process.env.REACT_APP_APIDEV_LOGIN;
+
+	return axios
+		.post(`${baseUrl}/renew`, "", {
+			headers: { token },
+		})
+		.then(({ data }) => {
+			localStorage.setItem("token", data.token);
+		});
 };

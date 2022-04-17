@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { useNavigate, useParams } from "react-router-dom";
-import { createManga, getManga } from "../../db/firebaseDB";
+import { createManga, getManga, updateManga } from "../../mongoDB/mongo";
 import { alertToast } from "../Alerts/Alerts";
 
 export const NewManga = () => {
@@ -11,12 +11,13 @@ export const NewManga = () => {
 		pasillo: "",
 		nivel: "",
 		seccion: "",
+		stock: true,
 	});
 
 	const [isLoading, setIsLoading] = useState(false);
 
 	const navigate = useNavigate();
-	const params = useParams();
+	const { id } = useParams();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -34,11 +35,13 @@ export const NewManga = () => {
 			return;
 		}
 
-		if (params.id) {
+		if (id) {
+			updateManga(formValues, id);
 			alertToast("success", "Manga editado correctamente.");
 			setIsLoading(false);
 			navigate("/");
 		} else {
+			createManga(formValues);
 			alertToast("success", "Manga creado correctamente.");
 			setIsLoading(false);
 			setFormValues({
@@ -47,15 +50,14 @@ export const NewManga = () => {
 				pasillo: "",
 				nivel: "",
 				seccion: "",
+				stock: true,
 			});
 		}
-
-		createManga(formValues);
 	};
 
 	useEffect(() => {
-		getManga(params.id).then(
-			({ deposito, nivel, pasillo, seccion, titulo }) => {
+		if (id) {
+			getManga(id).then(({ deposito, nivel, pasillo, seccion, titulo }) => {
 				setFormValues({
 					titulo,
 					deposito,
@@ -63,8 +65,8 @@ export const NewManga = () => {
 					pasillo,
 					seccion,
 				});
-			}
-		);
+			});
+		}
 	}, []); //eslint-disable-line
 
 	return (
