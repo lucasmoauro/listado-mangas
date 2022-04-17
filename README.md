@@ -21,4 +21,4 @@ Tambien se puede marcar como "agotado" un titulo mediante un checkbox, el cual l
 - react-loader-spinner
 - node-sass
 
-## **[Backend](https://github.com/lucasmoauro/listado-mangas-backend) de Listado-mangas** 
+## **[Backend](https://github.com/lucasmoauro/listado-mangas-backend) de Control de Mangas** 
