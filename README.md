@@ -9,6 +9,8 @@ Tambien se puede marcar como "agotado" un titulo mediante un checkbox, el cual l
 
 **Website: https://mangas.netlify.app**
 
+
+
 ### Librerias utilizadas:
 
 - React
@@ -18,3 +20,5 @@ Tambien se puede marcar como "agotado" un titulo mediante un checkbox, el cual l
 - react-toastify
 - react-loader-spinner
 - node-sass
+
+## **[Backend](https://github.com/lucasmoauro/listado-mangas-backend) de Listado-mangas** 
